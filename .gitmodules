@@ -1,0 +1,6 @@
+[submodule "srcs/postgresql"]
+	path = srcs/postgresql
+	url = https://git.postgresql.org/git/postgresql.git/
+[submodule "srcs/pg_tpch"]
+	path = srcs/pg_tpch
+	url = https://github.com/tvondra/pg_tpch

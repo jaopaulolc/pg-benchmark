@@ -1,0 +1,89 @@
+* PostgreSQL Benchmark Setup
+
+This repository contains the source code and scripts to build & run benchmarks
+with PostgreSQL.
+
+* Building & Setting up PostgreSQL
+
+** Cloning the repo
+
+After cloning the repo, you must get the submodules.
+
+#+BEGIN_SRC bash
+  git submodule update --init --recursive
+#+END_SRC
+
+** Checkout files in LFS
+
+#+BEGIN_SRC bash
+  git lfs fetch && git lfs checkout
+#+END_SRC
+
+** Extract benchmark source code
+
+#+BEGIN_SRC bash
+  ./scripts/extract-files.sh
+#+END_SRC
+
+** Edit variable in ~scripts/setenv.sh~
+
+Ajust variables to point to LLVM installation, readline library, and other
+required files.
+
+** Source ~scripts/setenv.sh~
+
+#+BEGIN_SRC bash
+  source scripts/setenv.sh
+#+END_SRC
+
+** Build & Install PostgreSQL
+
+#+BEGIN_SRC bash
+  ./scripts/build-and-install-postgresql.sh [ijit or ""] [-mcpu option]
+#+END_SRC
+
+** Add PostgreSQL tools to path
+
+#+BEGIN_SRC bash
+  source ./scripts/pg-setenv.sh [-mcpu option]
+#+END_SRC
+
+** Start DB server
+
+#+BEGIN_SRC bash
+  ./scripts/start-db-server.sh <db base dir name (e.g. tpch)>
+#+END_SRC
+
+
+* Running TPC-H queries
+
+Now that the PostgreSQL server is running, the database can be initialized with
+according to the [[https://www.tpc.org/default5.asp][TPC]] standard.
+
+** Build ~dbgen~ & ~qgen~ and create & populate testing database
+
+This step will build the tools from TPC-H to generate the data for populate the
+database (~dbgen~). It will also build the tool to generate the queries
+(~qgen~). After this step the database is ready for performance measurements.
+
+#+BEGIN_SRC bash
+  ./scripts/build-and-setup-tpch.sh
+#+END_SRC
+
+** Running queries
+
+TODO: check answers
+
+#+BEGIN_SRC bash
+  ./scripts/run-tpch.sh
+#+END_SRC
+
+* Running TPC-C
+
+With PostgreSQL up and runnnig, the benchmark can be executed. Unfortunatelly,
+it is an interactive program and provides little room for scripting. Please use
+the builtin menu after running the following command.
+
+#+BEGIN_SRC bash
+  ./scripts/run-tpcc.sh
+#+END_SRC

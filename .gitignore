@@ -1,0 +1,8 @@
+**/*.o
+databases
+srcs/tpc-h-*
+srcs/tpccuva-*
+srcs/tpc-e-*
+srcs/unixODBC*
+**/postgresql-install
+**/tpcc-install

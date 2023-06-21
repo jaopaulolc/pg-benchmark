@@ -1,0 +1,11 @@
+--- a/queries/1.sql	2022-09-26 17:32:45.120349168 -0500
++++ b/queries/1.sql	2022-09-27 14:15:26.515194944 -0500
+@@ -18,7 +18,7 @@
+ from
+ 	lineitem
+ where
+-	l_shipdate <= date '1998-12-01' - interval ':1' day (3)
++	l_shipdate <= date '1998-12-01' - interval ':1' day
+ group by
+ 	l_returnflag,
+ 	l_linestatus

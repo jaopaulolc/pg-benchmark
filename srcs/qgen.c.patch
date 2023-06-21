@@ -1,0 +1,14 @@
+--- qgen.c	2021-06-09 09:41:24.000000000 -0500
++++ qgen.c	2022-09-26 17:23:17.258674268 -0500
+@@ -209,6 +209,11 @@
+                         {
+                         rowcnt=atoi(++cptr);
+                         while (isdigit(*cptr) || *cptr == ' ') cptr++;
++                        #ifdef POSTGRESQL
++                        if (rowcnt < 0)
++                          fprintf(ofp, ";");
++                        else
++                        #endif
+                         fprintf(ofp, SET_ROWCOUNT, rowcnt);
+                         }
+                     continue;

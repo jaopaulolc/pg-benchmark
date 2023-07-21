@@ -45,7 +45,7 @@ for i in $(seq 1 22); do
     # remove leading spaces
     sed -i 's/^\s\+\?//' "$tmpfile"
     # delete last line
-    sed -i '"$d"' "$tmpfile"
+    sed -i '$d' "$tmpfile"
     # format floating-point number with 2 decimal places
     awk -f scripts/filter.awk "$tmpfile" > "$qout"
     rm -f "$tmpfile"
